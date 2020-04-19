@@ -16,7 +16,7 @@ the computer and powered via the Micro USB connection.
 
 Find the available COM port using the Device manager (in windows).The default baud rate is 115200.
 
-![Setup Menu](images/SetupMenu.png)
+![Setup Menu](images/SetupMenu.png?raw=true)
 
 
 
