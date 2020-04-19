@@ -120,7 +120,7 @@ void loop() {
         STATE=STATE_DISPLAY_OPTIONS;
         break;
       case STATE_CUSTOM_JOB:
-        PostLightLevels(Url);
+        PostData(Url);
         break;
    }
 
@@ -128,7 +128,7 @@ void loop() {
 }
 
 
-void PostLightLevels(char* url)
+void PostData(char* url)
 {
 
     const int ADC_PIN=A0;
@@ -136,22 +136,24 @@ void PostLightLevels(char* url)
     HTTPClient http;
 
     int counter=0;
-    int adc_value=0;
+    int lightValue=0;
     float temp=0.0;
-  
-    String postData="{\"value\":24}";
-    Serial.printf("posting data to %s \r\n",url);
+    int pressure=0;
 
+    char postData[100];
+ 
     while(true)
     {
       delay(1000);
 
-      adc_value=analogRead(ADC_PIN);
-      temp=bmp.readTemperature();;
+      lightValue=analogRead(ADC_PIN);
+      temp=bmp.readTemperature();
+      pressure=bmp.readPressure();
 
-      Serial.printf("light value is %d. Temperature is %3.1f\r\n",adc_value,temp);
+      sprintf(postData,"{\"light_level\":%d,\"temp\":%3.1f,\"pressure\":%d}",lightValue,temp,pressure);
+      Serial.println(postData);
       
-
+      //if the wifi connection is lost , restart the device
       if (WiFi.status() != WL_CONNECTED)
       {
         Serial.println("Wifi has disconnected.Restarting..");

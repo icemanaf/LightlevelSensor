@@ -3,7 +3,7 @@
  This sensor collects data from a light dependent resistor through the NodeMCU's ADC port as well
  as temperature and pressure values from the BMP180 sensor through i2c.
  
- circuit diagram
+ Circuit diagram
  ===============
 
 ![circuit](images/circuit.svg)
@@ -16,6 +16,8 @@ the computer and powered via the Micro USB connection.
 
 Find the available COM port using the Device manager (in windows).The default baud rate is 115200.
 
+Setup Menu
+==========
 ![Setup Menu](images/SetupMenu.PNG?raw=true)
 
 
